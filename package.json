@@ -1,0 +1,30 @@
+{
+  "name": "dexters-lab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "commander": "^2.9.0",
+    "fortune": "^5.0.2",
+    "koa": "^1.2.4",
+    "koa-logger": "^1.3.0",
+    "koa-router": "^5.4.0",
+    "pm2": "^2.2.3",
+    "sequelize": "^3.28.0",
+    "sqlite3": "^3.1.8",
+    "webscale": "git+ssh://git@github.com/dustyjewett/WebScale.git",
+    "ws": "^1.1.1",
+    "yayson": "^2.0.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-es2017": "^6.16.0"
+  }
+}

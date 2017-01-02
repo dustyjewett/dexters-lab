@@ -1,0 +1,10 @@
+apps:
+  - script   : server.js
+    watch  : true
+    args   : "--fake"
+    exec_interpreter: babel-node
+    env    :
+      DEBUG: koa-router
+      NODE_ENV: development
+    env_production:
+      NODE_ENV: production
