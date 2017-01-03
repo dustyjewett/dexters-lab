@@ -27,6 +27,13 @@ module.exports = {
   /**
    * Deployment section
    * http://pm2.keymetrics.io/docs/usage/deployment/
+   *
+   * Manual machine setup:
+   *  wget https://nodejs.org/dist/v7.3.0/node-v7.3.0-linux-armv6l.tar.xz
+   *  tar -xvf node-v7.3.0-linux-armv6l.tar.xz
+   *  cd node-v7.3.0-linux-armv6l/
+   *  sudo cp -R * /usr/local/
+   *
    */
   deploy : {
     production : {
@@ -35,7 +42,6 @@ module.exports = {
       ref  : "origin/master",
       repo : "git@github.com:dustyjewett/dexters-lab.git",
       "forward-agent": "yes",
-      "pre-setup" : "sudo apt-get install git libssl-dev; ",
       path : "/home/pi/dexters-lab",
       "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"
     },
