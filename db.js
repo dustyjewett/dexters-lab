@@ -33,19 +33,29 @@ module.exports = async function() {
     closing:  Sequelize.REAL,
     volume:   Sequelize.REAL
   });
+
+  var Feeding = sequelize.define('feeding', {
+
+  });
+  Feeding.belongsTo(Measurement, {as: 'preMeasurement'});
+  Feeding.belongsTo(Measurement, {as: 'postMeasurement'});
+
   await Measurement.sync();
   await Aggregate.sync();
+  await Feeding.sync();
 
-  var saveFeeding = (ounces) => {
-    let feeding = {
-      timestamp: new Date(),
-      ounces
-    };
-    diskdb.feedings.save(feeding);
+  var saveFeeding = async (pre) => {
+    let feeding = await Feeding.create();
+    await feeding.setPreMeasurement(pre);
+    return feeding;
   };
 
   var getFeedings = () => {
-    return diskdb.measurements.find();
+    return Feeding.all
+  };
+
+  var getFeeding = (id) => {
+    return Feeding.findById(id);
   };
 
   var saveMeasurement = (ounces) => {
@@ -98,8 +108,7 @@ module.exports = async function() {
       closing = current;
       return {opening, high, low, closing, volume};
     });
-    console.log(monthAg);
-    console.log(updatedMonth);
+
     await monthAg.updateAttributes(updatedMonth);
     await dateAg.updateAttributes(updatedDate);
     await hourAg.updateAttributes(updatedHour);
@@ -107,12 +116,16 @@ module.exports = async function() {
   };
 
   var getAggregates = (group) => {
-    return Aggregate.findAll({where: {group}});
+    let clause;
+    if (group) {
+      clause = { where: { group } };
+    }
+    return Aggregate.findAll(clause);
   };
 
 
   return {
-    saveFeeding, getFeedings,
+    saveFeeding, getFeedings, getFeeding,
     saveMeasurement, getMeasurements,
     addMeasurementToAggregates, getAggregates
   };

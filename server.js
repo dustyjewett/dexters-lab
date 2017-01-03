@@ -11,7 +11,6 @@ program
 
 async function main(){
   let db = await require('./db')();
-  console.log('database: ', db);
   let options = {
     apiPort: program['api-port'] || 8000,
     socketPort: program['socket-port'] || 8080,

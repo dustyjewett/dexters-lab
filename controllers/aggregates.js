@@ -6,15 +6,15 @@ class AggregatePresenter extends Presenter {}
 AggregatePresenter.prototype.type = 'aggregate';
 
 module.exports = function({db}) {
-  let ohlcvByHour = function * all(next) {
+  let all = function * all(next) {
     if ('GET' != this.method) return yield next;
-    yield db.getAggregates('hour')
+    yield db.getAggregates(this.query.group)
       .then((aggregates) => {
         this.body = AggregatePresenter.render(aggregates);
       });
   };
 
   return {
-    ohlcvByHour
+    all
   };
 };

@@ -4,7 +4,7 @@ module.exports = function(options){
   let aggregates  = require('../controllers/aggregates')(options);
 
   router
-    .get('/ohlcv/hour', aggregates.ohlcvByHour);
+    .get('/', aggregates.all);
 
   return router;
 };
