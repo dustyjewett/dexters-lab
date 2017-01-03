@@ -43,7 +43,7 @@ module.exports = {
       repo : "git@github.com:dustyjewett/dexters-lab.git",
       "forward-agent": "yes",
       path : "/home/pi/dexters-lab",
-      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env production"
+      "post-deploy" : "yarn install && pm2 startOrRestart ecosystem.json --env production"
     },
     dev : {
       user : "node",
