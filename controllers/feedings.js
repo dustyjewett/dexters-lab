@@ -23,7 +23,6 @@ module.exports = function({db, scale}) {
       .then((feeding) => {
         this.body = FeedingPresenter.render(feeding);
       });
-      }
   };
 
   let one = function* one(next) {
