@@ -29,6 +29,9 @@ module.exports = function({fake, db}){
     let measurement = await db.saveMeasurement(ounces);
     db.addMeasurementToAggregates(measurement);
   });
+  scale.on('disconnected', function(error){
+    console.log("Disconnected: ", error);
+  });
   return scale;
 };
 
