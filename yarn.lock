@@ -1307,9 +1307,9 @@ needle@1.6.0:
     debug "^2.1.2"
     iconv-lite "^0.4.4"
 
-node-hid@0.5.2:
-  version "0.5.2"
-  resolved "https://registry.yarnpkg.com/node-hid/-/node-hid-0.5.2.tgz#f01ebe153fd8632ec833503a2f39ea09123eb849"
+node-hid@0.5.4:
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/node-hid/-/node-hid-0.5.4.tgz#a7246dfc08d52774147fa264354d5da6eab40253"
   dependencies:
     nan "^2.4.0"
     node-pre-gyp "0.6.31"
@@ -1966,11 +1966,11 @@ vxx@^1.2.0:
     uuid "^3.0.1"
 
 "webscale@git+ssh://git@github.com/dustyjewett/WebScale.git":
-  version "0.0.3"
-  resolved "git+ssh://git@github.com/dustyjewett/WebScale.git#250f78cb8e7fda05cb729310d564f535e9f75f6a"
+  version "0.0.4"
+  resolved "git+ssh://git@github.com/dustyjewett/WebScale.git#95d3fb090f08ca24b96c1f872ba43e2dda77078b"
   dependencies:
     commander "^2.9.0"
-    node-hid "0.5.2"
+    node-hid "0.5.4"
 
 wide-align@^1.1.0:
   version "1.1.2"
