@@ -1,26 +1,27 @@
 #!/usr/bin/env node
 var program = require('commander');
 var Promise = require('bluebird');
-
+var SDC = require('statsd-client');
 
 program
   .option('-f, --fake', 'Fake Data (for testing)')
-  .option('-sp, --socket-port', 'Socket Port', parseInt)
-  .option('-ap, --api-port', 'API Port', parseInt)
   .parse(process.argv);
 
 async function main(){
-  let db = await require('./db')();
-  let options = {
-    apiPort: program['api-port'] || 8000,
-    socketPort: program['socket-port'] || 8080,
-    fake: program.fake,
-    db,
-    scale: require('./scale')({fake: program.fake, db})
+  var statsdOptions = {
+    host: 'stats.dusty.is',
+    prefix: 'dexters-lab',
+    debug: true,
+    tcp: true
   };
+  if (program.fake) {
+    statsdOptions.prefix += '-fake'
+  }
+  sdc = new SDC(statsdOptions);
 
-  require('./api')(options);
-  require('./sockets')(options);
+  let options = {
+    scale: require('./scale')({fake: program.fake, sdc})
+  };
 
 }
 

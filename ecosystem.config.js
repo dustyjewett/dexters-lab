@@ -7,20 +7,14 @@ module.exports = {
 
     // First application
     {
-      name      : "API",
-      script    : "app.js",
+      name      : "scale",
+      script    : "server.js",
       env: {
         COMMON_VARIABLE: "true"
       },
       env_production : {
         NODE_ENV: "production"
       }
-    },
-
-    // Second application
-    {
-      name      : "WEB",
-      script    : "web.js"
     }
   ],
 
@@ -38,23 +32,12 @@ module.exports = {
   deploy : {
     production : {
       user : "pi",
-      host : "192.168.1.124",
+      host : "dexters-lab.hornett.house",
       ref  : "origin/master",
       repo : "git@github.com:dustyjewett/dexters-lab.git",
       "forward-agent": "yes",
       path : "/home/pi/dexters-lab",
       "post-deploy" : "yarn install && pm2 startOrRestart ecosystem.json --env production"
-    },
-    dev : {
-      user : "node",
-      host : "212.83.163.1",
-      ref  : "origin/master",
-      repo : "git@github.com:repo.git",
-      path : "/var/www/development",
-      "post-deploy" : "npm install && pm2 startOrRestart ecosystem.json --env dev",
-      env  : {
-        NODE_ENV: "dev"
-      }
     }
   }
 }
