@@ -22,7 +22,7 @@ module.exports = function({fake, reportWeight, reportDisconnect}){
         scale.emit('change:weight', weight);
         console.log("Emiting Fake Weight", weight);
       }
-    }, 10000);
+    }, 5000);
   } else {
     scale = new WebScale(0);
   }
