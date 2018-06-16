@@ -3,7 +3,7 @@ const EventEmitter = require('events');
 
 class FakeScale extends EventEmitter {}
 
-module.exports = function({fake, sdc}){
+module.exports = function({fake, reportWeight, reportDisconnect}){
   let scale;
   console.log("Starting Scale");
   if(fake) {
@@ -29,11 +29,12 @@ module.exports = function({fake, sdc}){
 
   scale.on('change:weight', async function(ounces){
     console.log(`Weight Change: ${ounces}`);
-    sdc.gauge('ounces', ounces);
+    reportWeight(ounces);
+
   });
   scale.on('disconnected', function(error){
-    sdc.increment('disconnected');
     console.log("Disconnected: ", error);
+    reportDisconnect();
   });
   return scale;
 };

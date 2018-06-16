@@ -19,8 +19,16 @@ async function main(){
   }
   sdc = new SDC(statsdOptions);
 
+  let reportWeight = (ounces) => {
+    sdc.gauge('ounces', ounces);
+  };
+
+  let reportDisconnected = () => {
+    sdc.increment('disconnected');
+  }
+
   let options = {
-    scale: require('./scale')({fake: program.fake, sdc})
+    scale: require('./scale')({fake: program.fake, reportWeight, reportDisconnected})
   };
 
 }
